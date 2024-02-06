@@ -2,16 +2,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from .models import Customer
 
 # Create your views here.
 
 
+def cash_withdraw(request):
+    return render(request, "withdraw.html")
+
+
 def get_balance(request):
     if request.method == "GET":
         user = Customer.objects.get(pk=request.session["_auth_user_id"])
-        return user.get_balance()
+        return HttpResponse(user.get_balance())
 
 
 # @login_required(login_url="/atm/login")
@@ -27,15 +32,12 @@ def pin_enter(request):
 def verify_pin(request):
     if request.method == "POST":
         pin = request.POST["pin"]
-        if len(pin) != 4:
-            return HttpResponse("Invalid pin")
-
-        user = Customer.objects.get(pk=request.session["_auth_user_id"])
-        if user.check_pin(pin):
-            # successful
-            return HttpResponseRedirect("home")
-        else:
-            return HttpResponse(f"Invalid pin")
+        if len(pin) == 4:
+            user = Customer.objects.get(pk=request.session["_auth_user_id"])
+            if user.check_pin(pin):
+                return HttpResponseRedirect(reverse("home"))
+            else:
+                return HttpResponseRedirect(reverse("signout"))
 
 
 def register_customer(request):

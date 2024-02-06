@@ -1,0 +1,66 @@
+<div class="numericPad">
+    <div class="row">
+    <button onclick="changeTextArea('1')" class="numericPadButton">
+        1
+    </button>
+    <button onclick="changeTextArea('2')" class="numericPadButton">
+        2
+    </button>
+    <button onclick="changeTextArea('3')" class="numericPadButton">
+        3
+    </button>
+    <button
+        id="btnEnter"
+        hx-post="pin-verification"
+        hx-target="body"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        hx-vars=""
+        class="numericPadButton"
+        style="background-color: greenyellow"
+        onclick="sendPin()"
+    >
+        Enter
+    </button>
+    </div>
+    <div class="row">
+    <button onclick="changeTextArea('4')" class="numericPadButton">
+        4
+    </button>
+    <button onclick="changeTextArea('5')" class="numericPadButton">
+        5
+    </button>
+    <button onclick="changeTextArea('6')" class="numericPadButton">
+        6
+    </button>
+    <button class="numericPadButton" style="background-color: red">
+        Cancel
+    </button>
+    </div>
+    <div class="row">
+    <button onclick="changeTextArea('7')" class="numericPadButton">
+        7
+    </button>
+    <button onclick="changeTextArea('8')" class="numericPadButton">
+        8
+    </button>
+    <button onclick="changeTextArea('9')" class="numericPadButton">
+        9
+    </button>
+    <button
+        class="numericPadButton"
+        style="background-color: yellow"
+        onclick="clearScreen()"
+    >
+        Clear
+    </button>
+    </div>
+    <div class="row">
+    <button class="numericPadButton"></button>
+    <button onclick="changeTextArea('0')" class="numericPadButton">
+        0
+    </button>
+    <button class="numericPadButton"></button>
+    <button class="numericPadButton"></button>
+    </div>
+</div>
+</body>

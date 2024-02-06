@@ -18,10 +18,12 @@
     <h1>ATM</h1>
     {% include "navbar.html" %}
     <div id="screen" class="screen">
+      {% include "sidebarbtns.html" %}
       <div id="screen-display" class="screen-display" style="margin-top: 10px">
-        <div>Enter pin</div>
-        <div id="input-field" class="input-field"></div>
+        <div style="border-style: solid">Enter amount in multiple of 500</div>
+        <div id="input-field"></div>
       </div>
+      {% include "sidebarbtns.html" %}
     </div>
     {% include "numpad.html" %}
   </body>
@@ -34,13 +36,6 @@
 
     function clearScreen() {
       document.getElementById("input-field").innerText = "";
-    }
-
-    function sendPin() {
-      const pin = document.getElementById("input-field").innerText;
-      document
-        .getElementById("btnEnter")
-        .setAttribute("hx-vars", '{"pin": "' + pin + '"}');
     }
   </script>
 </html>
