@@ -12,16 +12,14 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'atm/style.css' %}" />
 
-    <title>ATM</title>
+    <title>ATM App</title>
   </head>
   <body>
     <h1>ATM</h1>
     {% include "navbar.html" %}
     <div id="screen" class="screen">
-      <div id="screen-display" class="screen-display" style="margin-top: 10px">
-        <div>Enter pin</div>
-        <div id="input-field" class="input-field"></div>
-      </div>
+      <div>Enter pin</div>
+      <input type="number" id="input-field" class="input-field"></input>
     </div>
     {% include "numpad.html" %}
   </body>
