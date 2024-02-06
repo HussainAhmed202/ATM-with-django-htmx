@@ -1,0 +1,8 @@
+{% include "navbar.html" %}
+<form action="/atm/login" method="post">
+  {% csrf_token %} {% if message %}
+  <div id="msg">Invalid Username or Password</div>
+  {% endif %} {% include "form.html" %}
+
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,6 @@
+{% include "navbar.html" %}
+<form action="/atm/register" method="post">
+  {% csrf_token %} {% include 'form.html' %}
+
+  <button type="submit">Submit</button>
+</form>

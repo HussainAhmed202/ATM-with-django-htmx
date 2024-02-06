@@ -1,0 +1,65 @@
+.screen {
+    height: 250px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-style: solid;
+}
+
+
+.row{
+ display: flex; 
+ flex-direction: row; 
+ width: 240px;
+ align-items: center;
+ justify-content: center;
+}
+
+
+.numericPad{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+.numericPadButton{
+        font-size: large; 
+        width: 60px; 
+        height: 50px
+
+}
+
+.side-bar{
+    display: grid;
+    height: 100%;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen-display{
+    background-color: #8d8dff;
+    width: 85%;
+    height: 90%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    flex-direction: column;
+}
+
+.input-field{
+    width: 50%;
+    background-color: blue;
+    text-align: center;
+    font-size: 30px;
+  
+}
+
+.side-buttons{
+    width: 30px;
+    height: 30px;
+
+}

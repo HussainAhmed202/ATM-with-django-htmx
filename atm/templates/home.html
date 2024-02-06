@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'atm/style.css' %}" />
+
+    <title>ATM</title>
+  </head>
+  <body>
+    <h1>ATM</h1>
+    {% include "navbar.html" %}
+    <div id="screen" class="screen">
+      <div class="side-bar">
+        <button>Withdraw Cash</button>
+      </div>
+      <div id="screen-display" class="screen-display" style="margin-top: 10px">
+        <div id="input-field" class="input-field"></div>
+      </div>
+      <div class="side-bar">
+        <button
+          hx-get="get_balance"
+          hx-target="#input-field"
+          hx-trigger="click"
+        >
+          Balance Enquiry
+        </button>
+      </div>
+    </div>
+
+    <div class="numericPad">
+      <div class="row">
+        <button onclick="changeTextArea('1')" class="numericPadButton">
+          1
+        </button>
+        <button onclick="changeTextArea('2')" class="numericPadButton">
+          2
+        </button>
+        <button onclick="changeTextArea('3')" class="numericPadButton">
+          3
+        </button>
+        <button
+          id="btnEnter"
+          hx-post="pin-verification"
+          hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+          hx-target="#input-field"
+          hx-vars=""
+          class="numericPadButton"
+          style="background-color: greenyellow"
+          onclick="sendPin()"
+        >
+          Enter
+        </button>
+      </div>
+      <div class="row">
+        <button onclick="changeTextArea('4')" class="numericPadButton">
+          4
+        </button>
+        <button onclick="changeTextArea('5')" class="numericPadButton">
+          5
+        </button>
+        <button onclick="changeTextArea('6')" class="numericPadButton">
+          6
+        </button>
+        <button class="numericPadButton" style="background-color: red">
+          Cancel
+        </button>
+      </div>
+      <div class="row">
+        <button onclick="changeTextArea('7')" class="numericPadButton">
+          7
+        </button>
+        <button onclick="changeTextArea('8')" class="numericPadButton">
+          8
+        </button>
+        <button onclick="changeTextArea('9')" class="numericPadButton">
+          9
+        </button>
+        <button
+          class="numericPadButton"
+          style="background-color: yellow"
+          onclick="clearScreen()"
+        >
+          Clear
+        </button>
+      </div>
+      <div class="row">
+        <button class="numericPadButton"></button>
+        <button onclick="changeTextArea('0')" class="numericPadButton">
+          0
+        </button>
+        <button class="numericPadButton"></button>
+        <button class="numericPadButton"></button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function changeTextArea(param) {
+      if (document.getElementById("input-field").innerText.length < 4) {
+        document.getElementById("input-field").innerText += param;
+      }
+    }
+
+    function clearScreen() {
+      document.getElementById("input-field").innerText = "";
+    }
+
+    function sendPin() {
+      const pin = document.getElementById("input-field").innerText;
+      document
+        .getElementById("btnEnter")
+        .setAttribute("hx-vars", '{"pin": "' + pin + '"}');
+    }
+  </script>
+</html>
